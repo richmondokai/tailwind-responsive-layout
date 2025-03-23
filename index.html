@@ -1,299 +1,204 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-    />
-    <title>Tailwind Css Layout</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="wsp.css" />
-  </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Status Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --Background-White-100: #FFFFFF;
+            --Background-Status-Accepted: #119717;
+            --Background-Black-10: rgba(0, 0, 0, 0.1);
+        }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: linear-gradient(67.75deg, #FFFFFF 19.18%, #FFEBE7 75.31%);
+        }
+        .sidebar-icon.active {
+            background-color: #FF5634;
+        }
+        .section-ready .item {
+            background: var(--Background-Status-Accepted);
+            color: white;
+        }
+        .section-preparing .item {
+            background: var(--Background-Black-10);
+            color: black;
+        }
+    </style>
+</head>
+<body class="custom-bg-gradient font-['DM_Sans'] flex min-h-screen w-full flex-col flex-wrap bg-cover bg-no-repeat antialiased">
+            <div class="sub-content flex flex-col items-center h-full mt-[16px] px-[16px] mb-[16px] w-full md:mt-[16px]">
+                <!-- McDonald's Info Card -->
+                <div class="mcdonald-card flex w-full h-[92px] p-[16px] justify-between items-center rounded-[16px] bg-black/5 md:h-auto md:flex-row md:gap-[8px] sm:p-[16px]">
+                    <div class="mcd-logo flex items-center gap-4 font-medium text-[20px] tracking-[-0.01em] md:gap-2">
+                        <img src="image 2.png" alt="McDonald's Logo" class="w-15 h-15 rounded-xl">
+                        <span class="text-[16px] md:text-[18px] lg:text-[20px] leading-[24px] tracking-[-0.01em] text-black-100 font-normal">McDonald's</span>
+                    </div>
+                    <div class="time text-[24px] md:text-[28px] lg:text-[32px] leading-[40px] tracking-[-0.03em] font-bold text-black-100">15:03</div>
+                </div>
 
-<style>/* Base Font Size */
-  html {
-    font-size: 16px;
-    height: 100%;
-  }
-  
-  /* General Reset */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-    background: linear-gradient(67.75deg, #ffffff 19.18%, #ffebe7 75.31%);
-    padding: 1rem;
-    font-family: 'DM Sans', sans-serif;
-  }
-  
-  /* McDonald's Info Card */
-  .brand-card {
-    display: flex;
-    width: 100%;
-    height: 92px;
-    padding: 16px;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 16px;
-    background: rgba(0, 0, 0, 0.05);
-  }
-  
-  .brand-logo {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    font-weight: 500;
-    font-size: 20px;
-    letter-spacing: -1%;
-  }
-  
-  .brand-logo img {
-    width: 60px;
-    height: 60px;
-    border-radius: 16px;
-  }
-  
-  .time {
-    font-weight: 700;
-    font-size: 32px;
-    letter-spacing: -3%;
-  }
-  
-  /* Grid Wrapper */
-  .grid-container {
-    display: grid;
-    grid-template-columns: 1fr 383px;
-    gap: 16px;
-    width: 100%;
-    flex-grow: 1;
-    margin-top: 16px;
-  }
-  
-  /* General Section Styles */
-  .section {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-  }
-  
-  /* Preparing Section */
-  .section-preparing {
-    max-width: 100%;
-    height: 100%;
-    border-radius: 24px;
-    padding: 24px;
-    gap: 24px;
-    background: #ffffff;
-  }
-  
-  /* Ready Section */
-  .section-ready {
-    width: 383px;
-    height: 100%;
-    border-radius: 24px;
-    padding: 24px;
-    gap: 24px;
-    background: #ffffff;
-  }
-  
-  .section h2 {
-    text-align: center;
-    font-weight: 700;
-    font-size: 32px;
-    letter-spacing: -3%;
-  }
-  
-  .box-item {
-    overflow-y: auto;
-    flex-grow: 2;
-  }
-  
-  .items {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    flex-grow: 1;
-  }
-  
-  .item {
-    display: flex;
-    width: 106px;
-    height: 64px;
-    align-items: center;
-    border-radius: 16px;
-    background: rgba(0, 0, 0, 0.1);
-    font-weight: 700;
-    font-size: 24px;
-    letter-spacing: -0.48px;
-    justify-content: center;
-  }
-  
-  .section-ready .item {
-    background: #119717;
-    color: white;
-  }
-  
-  .section-ready .item:first-child {
-    justify-content: center;
-    width: 100%;
-    height: 128px;
-    font-size: 32px;
-    padding: 24px;
-  }
-  
-  .section-preparing .item {
-    background: #0000001a;
-    color: black;
-  }
-  
-  /* Responsive Adjustments */
-  @media (max-width: 48rem) {
-    .grid-container {
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
-  
-    .section {
-      height: auto;
-      min-height: 400px;
-    }
-  
-    .section h2 {
-      font-size: 24px;
-    }
-  
-    .item {
-      width: 80px;
-      height: 50px;
-      font-size: 18px;
-    }
-  
-    .section-ready .item:first-child {
-      height: 100px;
-      font-size: 24px;
-    }
-  
-    .section-ready {
-      width: 100%;
-      height: 100%;
-    }
-  }
-  
-  @media (max-width: 30rem) {
-    .grid-container {
-      grid-template-columns: 1fr 1fr;
-      gap: 4px;
-    }
-  
-    .brand-logo img {
-      width: 40px;
-      height: 40px;
-    }
-  
-    .time {
-      font-size: 20px;
-    }
-  
-    .section h2 {
-      font-size: 20px;
-    }
-  
-    .item {
-      width: 60px;
-      height: 40px;
-      font-size: 16px;
-    }
-  
-    .section-ready .item:first-child {
-      height: 80px;
-      font-size: 20px;
-    }
-  }</style>
+                <!-- Grid Wrapper -->
+                <div class="grid-wrapper grid w-full flex-grow gap-4 mt-4 md:grid-cols-2 md:mt-[16px] sm:grid-cols-2 sm:mt-[10px] lg:grid-cols-[1fr_383px] max-lg:flex max-lg:flex-row max-[30rem]:flex max-[30rem]:flex-row">                    <div class="flex-1 bg-white rounded-lg p-6 flex flex-col h-full">
+                        <h2 class="text-[24px] md:text-[28px] lg:text-[32px] leading-[40px] tracking-[-0.03em] font-bold text-center mb-6">Preparing</h2>
+                        <div class="overflow-y-auto masonry-scroll-container flex-1 text-center" style="max-height: calc(100vh - 200px);">
+                            <div class="items flex gap-2 justify-center items-start flex-wrap flex-grow">
+                                <!-- Repeat items -->
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl bg-black/10 font-bold text-2xl tracking-tight">3885</div>
+                            </div>
+                        </div>
+                    </div>
 
-  <body>
-    <!-- McDonald's Info Card -->
-    <div class="brand-card">
-      <div class="brand-logo">
-        <img src="image 2.png" alt="Brand Logo" />
-        <span>McDonald's</span>
-      </div>
-      <div class="time">15:03</div>
+                    <!-- Ready Section -->
+                    <div class="flex-1 bg-white rounded-lg p-6 flex flex-col h-full">
+                        <h2 class="text-[24px] md:text-[28px] lg:text-[32px] leading-[40px] tracking-[-0.03em] font-bold text-center mb-6">Ready</h2>
+                        <div class="overflow-y-auto masonry-scroll-container flex-1 text-center" style="max-height: calc(100vh - 200px);">                            <div class="items flex gap-2 justify-center items-start flex-wrap flex-grow">
+                            <div class="items flex gap-2 justify-center items-start flex-wrap flex-grow">
+                                <!-- First item is larger -->
+                                <div class="item w-full h-32 flex items-center justify-center rounded-xl font-bold text-[32px] bg-green-600 text-white">3885</div>
+                                <!-- Repeat items -->
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl font-bold text-2xl tracking-tighter bg-green-600 text-white">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl font-bold text-2xl tracking-tighter bg-green-600 text-white">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl font-bold text-2xl tracking-tighter bg-green-600 text-white">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl font-bold text-2xl tracking-tighter bg-green-600 text-white">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl font-bold text-2xl tracking-tighter bg-green-600 text-white">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl font-bold text-2xl tracking-tighter bg-green-600 text-white">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl font-bold text-2xl tracking-tighter bg-green-600 text-white">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl font-bold text-2xl tracking-tighter bg-green-600 text-white">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl font-bold text-2xl tracking-tighter bg-green-600 text-white">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl font-bold text-2xl tracking-tighter bg-green-600 text-white">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl font-bold text-2xl tracking-tighter bg-green-600 text-white">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl font-bold text-2xl tracking-tighter bg-green-600 text-white">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl font-bold text-2xl tracking-tighter bg-green-600 text-white">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl font-bold text-2xl tracking-tighter bg-green-600 text-white">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl font-bold text-2xl tracking-tighter bg-green-600 text-white">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl font-bold text-2xl tracking-tighter bg-green-600 text-white">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl font-bold text-2xl tracking-tighter bg-green-600 text-white">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl font-bold text-2xl tracking-tighter bg-green-600 text-white">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl font-bold text-2xl tracking-tighter bg-green-600 text-white">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl font-bold text-2xl tracking-tighter bg-green-600 text-white">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl font-bold text-2xl tracking-tighter bg-green-600 text-white">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl font-bold text-2xl tracking-tighter bg-green-600 text-white">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl font-bold text-2xl tracking-tighter bg-green-600 text-white">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl font-bold text-2xl tracking-tighter bg-green-600 text-white">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl font-bold text-2xl tracking-tighter bg-green-600 text-white">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl font-bold text-2xl tracking-tighter bg-green-600 text-white">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl font-bold text-2xl tracking-tighter bg-green-600 text-white">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl font-bold text-2xl tracking-tighter bg-green-600 text-white">3885</div>
+                                <div class="item flex items-center justify-center w-[106px] h-16 rounded-xl font-bold text-2xl tracking-tighter bg-green-600 text-white">3885</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
 
-    <!-- Main Content -->
-    <div class="grid-container">
-      <!-- Preparing Section -->
-      <div class="section section-preparing">
-        <h2>Preparing</h2>
-        <div class="box-item">
-          <div class="items">
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
+    <script>
+        // Fullscreen functionality
+        const fullscreenBtn = document.querySelector(".fullscreen-btn");
+        const subContent = document.querySelector(".sub-content");
+        const header = document.querySelector(".header");
+        const sidebar = document.querySelector(".sidebar");
+        const mainContent = document.querySelector(".main-content");
 
-          </div>
-        </div>
-      </div>
+        fullscreenBtn.addEventListener("click", function () {
+            if (!document.fullscreenElement) {
+                // Enter fullscreen mode
+                document.documentElement.requestFullscreen();
 
-      <!-- Ready Section -->
-      <div class="section section-ready">
-        <h2>Ready</h2>
-        <div class="box-item">
-          <div class="items">
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
-            <div class="item">3885</div>
+                // Hide header and sidebar
+                header.style.display = "none";
+                sidebar.style.display = "none";
 
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>
+                // Adjust sub-content to take full space with 16px padding
+                subContent.style.width = "100%";
+                subContent.style.height = "100vh";
+                subContent.style.marginLeft = "0";
+                subContent.style.padding = "16px";
+                mainContent.style.marginLeft = "0";
+            } else {
+                // Exit fullscreen mode
+                document.exitFullscreen();
+
+                // Show header and sidebar
+                header.style.display = "flex";
+                sidebar.style.display = "flex";
+
+                // Reset sub-content styles
+                subContent.style.width = "";
+                subContent.style.height = "";
+                subContent.style.marginLeft = "";
+                subContent.style.padding = "";
+                mainContent.style.marginLeft = "96px";
+            }
+        });
+
+        // Update time every second (without AM/PM)
+        function updateTime() {
+            const timeElement = document.querySelector(".time");
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, "0");
+            const minutes = String(now.getMinutes()).padStart(2, "0");
+            timeElement.innerText = `${hours}:${minutes}`;
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
+</body>
 </html>
